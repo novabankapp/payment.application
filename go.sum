@@ -1,0 +1,6 @@
+github.com/novabankapp/payment.data v1.0.0 h1:LasGwklCmwcPoVshetNfkQZGO36D2YMXyFNNLfCDkdU=
+github.com/novabankapp/payment.data v1.0.0/go.mod h1:jI58rnyd2CG1gBcjITpn5avT8xhHfdX88sMiI2zOKGk=
+github.com/novabankapp/wallet.application v0.0.0-20220701182002-b2adba8ebd7b h1:JTdhcQMgpbhaa0N633WdNW5VKo0pG301w3O561I3TgE=
+github.com/novabankapp/wallet.application v0.0.0-20220701182002-b2adba8ebd7b/go.mod h1:84CTiXT84JBIJT9ocULyqvz3WoRMM0moHzW7aDIufcI=
+github.com/novabankapp/wallet.application v1.0.0 h1:/06bGGJt2wlpwrpYqXhpAnLDFR+pYwYds8kZl8E24RE=
+github.com/novabankapp/wallet.application v1.0.0/go.mod h1:84CTiXT84JBIJT9ocULyqvz3WoRMM0moHzW7aDIufcI=
