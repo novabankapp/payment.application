@@ -12,6 +12,27 @@ import (
 )
 
 type MoneyTransferService interface {
+	ReceiveFromServiceToWallet(
+		ctx context.Context,
+		fromNovaSuspenseWalletAggregateId,
+		toWalletAggregateId,
+		description string,
+		amount decimal.Decimal,
+	) (result *string, error error)
+	TransferToServiceFromWallet(
+		ctx context.Context,
+		from dtos.AccountDto,
+		to dtos.AccountDto,
+		amount decimal.Decimal,
+		toNovaSuspenseWalletAggregateId,
+		description string,
+	) (result *string, error error)
+	TransferFromWalletToWallet(
+		ctx context.Context,
+		creditWalletAggregateId string,
+		amount decimal.Decimal,
+		debitWalletAggregateId,
+		description string) (result bool, error error)
 }
 
 type moneyTransferService struct {
@@ -19,7 +40,18 @@ type moneyTransferService struct {
 	moneyService  integrations.MoneyService
 }
 
-func (m *moneyTransferService) ReceiveFromService(
+func NewMoneyTransferService(
+	walletService services.WalletService,
+	moneyService integrations.MoneyService,
+) MoneyTransferService {
+
+	return &moneyTransferService{
+		walletService: walletService,
+		moneyService:  moneyService,
+	}
+}
+
+func (m *moneyTransferService) ReceiveFromServiceToWallet(
 	ctx context.Context,
 	fromNovaSuspenseWalletAggregateId,
 	toWalletAggregateId,
@@ -50,7 +82,7 @@ func (m *moneyTransferService) ReceiveFromService(
 
 	return transId, nil
 }
-func (m *moneyTransferService) TransferToService(
+func (m *moneyTransferService) TransferToServiceFromWallet(
 	ctx context.Context,
 	from dtos.AccountDto,
 	to dtos.AccountDto,
@@ -81,7 +113,7 @@ func (m *moneyTransferService) TransferToService(
 	}
 	return transId, err
 }
-func (m *moneyTransferService) WalletToWallet(
+func (m *moneyTransferService) TransferFromWalletToWallet(
 	ctx context.Context,
 	creditWalletAggregateId string,
 	amount decimal.Decimal,
